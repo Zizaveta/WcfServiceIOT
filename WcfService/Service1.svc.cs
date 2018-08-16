@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -21,6 +22,7 @@ namespace WcfService
                     data.Temperature = Double.Parse(Temperature);
                     data.Altitude = Double.Parse(Altitude);
                     data.Pressure = Double.Parse(Pressure);
+                    Debug.WriteLine($"{data.Temperature} {data.Pressure} {data.Altitude}");
                     db.AllData.Add(data);
                     db.SaveChanges();
                 }
