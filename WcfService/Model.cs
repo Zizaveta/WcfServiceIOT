@@ -21,14 +21,19 @@ namespace WcfService
         [DataMember]
         public int Id { get; set; }
         [DataMember]
-        public DateTime DateAndTime { get; set; }
+        public string NamePerson { get; set; }
+        [DataMember]
+        public string DateAndTime { get; set; }
         [DataMember]
         public double Temperature { get; set; }
         [DataMember]
-        public double Altitude { get; set; }
-        [DataMember]
         public double Pressure { get; set; }
+        [DataMember]
+        public double Humidity { get; set; }
+      
     }
+
+
 
 
 }

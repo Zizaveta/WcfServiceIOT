@@ -11,18 +11,19 @@ namespace WcfService
 {
     public class Service1 : IService1
     {
-        public void ReceiveData(string Temperature, string Altitude, string Pressure)
+        public void ReceiveData(string Name, string Temperature, string Humidity, string Pressure)
         {
             using (WeatherContext db = new WeatherContext())
             {
                 TempData data = new TempData();
-                data.DateAndTime = DateTime.Now;
+                data.DateAndTime = DateTime.Now.ToString();
                 try
                 {
                     data.Temperature = Double.Parse(Temperature);
-                    data.Altitude = Double.Parse(Altitude);
+                    data.Humidity = Double.Parse(Humidity);
                     data.Pressure = Double.Parse(Pressure);
-                    Debug.WriteLine($"{data.Temperature} {data.Pressure} {data.Altitude}");
+                    data.NamePerson = Name;
+                    Debug.WriteLine($"{data.Temperature} {data.Pressure} {data.Humidity}");
                     db.AllData.Add(data);
                     db.SaveChanges();
                 }

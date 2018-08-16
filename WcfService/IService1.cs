@@ -16,8 +16,8 @@ namespace WcfService
         [OperationContract]
         [WebInvoke(BodyStyle = WebMessageBodyStyle.Wrapped,
                    Method = "GET",
-                   UriTemplate = "/ReceiveData?temp={Temperature}&alt={Altitude}&press={Pressure}")]
-        void ReceiveData(string Temperature, string Altitude, string Pressure);
+                   UriTemplate = "/ReceiveData?name={Name}&temp={Temperature}&humidity={Humidity}&press={Pressure}")]
+        void ReceiveData(string Name, string Temperature, string Humidity, string Pressure);
 
 
         [OperationContract]

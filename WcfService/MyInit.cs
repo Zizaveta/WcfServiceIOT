@@ -7,7 +7,7 @@ namespace WcfService
     {
         protected override void Seed(WeatherContext context)
         {
-            context.AllData.Add(new TempData() { DateAndTime = DateTime.Now, Altitude = 10, Pressure = 10, Temperature = 10 });
+            context.AllData.Add(new TempData() { DateAndTime = DateTime.Now.ToString(), Humidity = 10, Pressure = 10, Temperature = 10 });
             context.SaveChanges();
         }
     }
