@@ -61,6 +61,21 @@ namespace WcfService
             }
         }
 
+        public TempData[] ReturnDataByName(string Name)
+        {
+            try
+            {
+                using (WeatherContext db = new WeatherContext())
+                {
+                    return db.AllData.Where(elem => elem.NamePerson == Name).ToArray();
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public TempData ReturnLastData()
         {
             try
@@ -75,7 +90,7 @@ namespace WcfService
             {
                 return null;
             }
-        }
+        } // need choose method
 
     }
 }

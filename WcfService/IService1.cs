@@ -38,6 +38,10 @@ namespace WcfService
                    UriTemplate = "/ReturnAllData")]
         TempData[] ReturnAllData();
 
-
+        [OperationContract]
+        [WebGet(
+                  ResponseFormat = WebMessageFormat.Json,
+                  UriTemplate = "/ReturnDataByName?name={Name}")]
+        TempData[] ReturnDataByName(string Name);
     }
 }
