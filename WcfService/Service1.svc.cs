@@ -11,6 +11,16 @@ namespace WcfService
 {
     public class Service1 : IService1
     {
+        public TempData AvgDataByDay(string Date) // rewrite
+        {
+            try
+            {
+                TempData[] arrayOfData = ReturnAllDataByDay(Date);
+                return new TempData() { DateAndTime = Date, Humidity = arrayOfData.Average(elem => elem.Humidity), Pressure = arrayOfData.Average(elem => elem.Pressure), Temperature = arrayOfData.Average(elem => elem.Temperature) };
+            }
+            catch { return null; }
+        }
+
         public void ReceiveData(string Name, string Temperature, string Humidity, string Pressure)
         {
             using (WeatherContext db = new WeatherContext())
@@ -31,6 +41,45 @@ namespace WcfService
             }
         }
 
+        public TempData[] Return10LastDataByName(string Name)
+        {
+            try
+            {
+                TempData[] arrayOfData = ReturnDataByName(Name);
+                if (arrayOfData.Count() > 10)
+                    arrayOfData = arrayOfData.Skip(arrayOfData.Count() - 10).Take(10).ToArray();
+                return arrayOfData;
+            }
+            catch
+            { return null; }
+        }
+
+        public TempData[] Return20LastData()
+        {
+            try
+            {
+                TempData[] arrayOfData = ReturnAllData();
+                if (arrayOfData.Count() > 20)
+                    arrayOfData = arrayOfData.Skip(arrayOfData.Count() - 20).Take(20).ToArray();
+                return arrayOfData;
+            }
+            catch
+            { return null; }
+        }
+
+        public TempData[] Return20LastDataByName(string Name)
+        {
+            try
+            {
+                TempData[] arrayOfData = ReturnDataByName(Name);
+                if (arrayOfData.Count() > 20)
+                    arrayOfData = arrayOfData.Skip(arrayOfData.Count() - 20).Take(20).ToArray();
+                return arrayOfData;
+            }
+            catch
+            { return null; }
+        }
+
         public TempData[] ReturnAllData()
         {
             try
@@ -44,6 +93,15 @@ namespace WcfService
             {
                 return null;
             }
+        }
+
+        public TempData[] ReturnAllDataByDay(string Date)
+        {
+           try
+            {
+                return ReturnAllData().Where(elem => elem.DateAndTime.StartsWith(Date)).ToArray();
+            }
+            catch { return null; }
         }
 
         public string ReturnCountOfData()
@@ -82,7 +140,7 @@ namespace WcfService
             {
                 using (WeatherContext db = new WeatherContext())
                 {
-                    TempData tmp = db.AllData.First();
+                    TempData tmp = db.AllData.ToArray()[db.AllData.Count()-1];
                     return tmp;
                 }
             }
@@ -90,7 +148,7 @@ namespace WcfService
             {
                 return null;
             }
-        } // need choose method
+        }
 
     }
 }

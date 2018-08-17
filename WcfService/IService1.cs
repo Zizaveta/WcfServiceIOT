@@ -43,5 +43,30 @@ namespace WcfService
                   ResponseFormat = WebMessageFormat.Json,
                   UriTemplate = "/ReturnDataByName?name={Name}")]
         TempData[] ReturnDataByName(string Name);
+
+        [WebGet(
+                 ResponseFormat = WebMessageFormat.Json,
+                 UriTemplate = "/Return20LastDataByName?name={Name}")]
+        TempData[] Return20LastDataByName(string Name);
+
+        [WebGet(
+                ResponseFormat = WebMessageFormat.Json,
+                UriTemplate = "/Return10LastDataByName?name={Name}")]
+        TempData[] Return10LastDataByName(string Name);
+
+        [WebGet(
+                ResponseFormat = WebMessageFormat.Json,
+                UriTemplate = "/Return20LastData")]
+        TempData[] Return20LastData();
+
+        [WebGet(
+                ResponseFormat = WebMessageFormat.Json,
+                UriTemplate = "/ReternAllDataByDay?date={Date}")]
+        TempData[] ReturnAllDataByDay(string Date);
+
+        [WebGet(
+               ResponseFormat = WebMessageFormat.Json,
+               UriTemplate = "/AvgDataByDay?date={Date}")]
+        TempData AvgDataByDay(string Date);
     }
 }
