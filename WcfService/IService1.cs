@@ -61,12 +61,17 @@ namespace WcfService
 
         [WebGet(
                 ResponseFormat = WebMessageFormat.Json,
-                UriTemplate = "/ReternAllDataByDay?date={Date}")]
+                UriTemplate = "/ReturnAllDataByDay?date={Date}")]
         TempData[] ReturnAllDataByDay(string Date);
 
         [WebGet(
                ResponseFormat = WebMessageFormat.Json,
                UriTemplate = "/AvgDataByDay?date={Date}")]
         TempData AvgDataByDay(string Date);
+
+        [WebGet(
+              ResponseFormat = WebMessageFormat.Json,
+              UriTemplate = "/ReturnAllPersonNames")]
+        string[] ReturnAllPersonNames();
     }
 }

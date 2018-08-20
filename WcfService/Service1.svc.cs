@@ -105,6 +105,11 @@ namespace WcfService
             catch { return null; }
         }
 
+        public string[] ReturnAllPersonNames()
+        {
+            return ReturnAllData().Select(elem => elem.NamePerson).Distinct().ToArray();
+        }
+
         public string ReturnCountOfData()
         {
             try
