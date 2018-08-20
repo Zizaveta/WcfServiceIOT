@@ -15,7 +15,8 @@ namespace WcfService
         {
             try
             {
-                TempData[] arrayOfData = ReturnAllDataByDay(Date);
+                var tmp_data = Date.Replace('.', '/');
+                TempData[] arrayOfData = ReturnAllDataByDay(tmp_data);
                 return new TempData() { DateAndTime = Date, Humidity = arrayOfData.Average(elem => elem.Humidity), Pressure = arrayOfData.Average(elem => elem.Pressure), Temperature = arrayOfData.Average(elem => elem.Temperature) };
             }
             catch { return null; }
